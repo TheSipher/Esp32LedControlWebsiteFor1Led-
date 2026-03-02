@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+<title>ESP32 LED Control</title>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<style>
+
+body{
+font-family: Arial;
+background:#0f172a;
+color:white;
+text-align:center;
+padding-top:60px;
+}
+
+h1{
+margin-bottom:40px;
+}
+
+.card{
+background:#1e293b;
+padding:30px;
+border-radius:15px;
+width:220px;
+margin:auto;
+box-shadow:0 0 20px rgba(0,0,0,0.3);
+}
+
+.status{
+font-size:18px;
+margin-top:10px;
+margin-bottom:15px;
+}
+
+.switch{
+position:relative;
+display:inline-block;
+width:90px;
+height:45px;
+}
+
+.switch input{
+display:none;
+}
+
+.slider{
+position:absolute;
+cursor:pointer;
+top:0;
+left:0;
+right:0;
+bottom:0;
+background-color:#555;
+transition:.4s;
+border-radius:45px;
+}
+
+.slider:before{
+position:absolute;
+content:"";
+height:35px;
+width:35px;
+left:5px;
+bottom:5px;
+background-color:white;
+transition:.4s;
+border-radius:50%;
+}
+
+input:checked + .slider{
+background-color:#22c55e;
+}
+
+input:checked + .slider:before{
+transform:translateX(45px);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>ESP32 LED Control</h1>
+
+<div class="card">
+
+<h2>LED 1</h2>
+
+<div class="status" id="status1">OFF</div>
+
+<label class="switch">
+<input type="checkbox" id="toggle1" onchange="toggleLED()">
+<span class="slider"></span>
+</label>
+
+</div>
+
+<script>
+
+var firebaseConfig = {
+apiKey: "AIzaSyBmBjAhMNeczOxsetv1NCe6CQxINw01_ZY",
+databaseURL: "https://esp32-led-control-c30ee-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+var db = firebase.database();
+
+function toggleLED(){
+
+var toggle = document.getElementById("toggle1");
+
+if(toggle.checked){
+db.ref("led1").set(1);
+}
+else{
+db.ref("led1").set(0);
+}
+
+}
+
+db.ref("led1").on("value", function(snapshot){
+
+var val = snapshot.val();
+
+document.getElementById("toggle1").checked = val;
+document.getElementById("status1").innerText = val ? "ON" : "OFF";
+
+});
+
+</script>
+
+</body>
+
+</html>
