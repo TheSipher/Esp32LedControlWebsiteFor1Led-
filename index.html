@@ -14,8 +14,12 @@
 
 <style>
 
+*{
+box-sizing:border-box;
+}
+
 body{
-font-family: Arial;
+font-family: Arial, sans-serif;
 background:#0f172a;
 color:white;
 margin:0;
@@ -23,40 +27,56 @@ min-height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-}
-
-.container{
-text-align:center;
-width:100%;
-max-width:700px;
 padding:20px;
 }
 
-h1{
-font-size:48px;
-margin-bottom:50px;
-}
+/* MAIN CONTAINER */
 
-.card{
-background:#1e293b;
-padding:60px;
-border-radius:25px;
-box-shadow:0 0 40px rgba(0,0,0,0.5);
+.container{
+width:100%;
+max-width:420px;
 display:flex;
 flex-direction:column;
 align-items:center;
-gap:25px;
-width:100%;
+text-align:center;
+gap:35px;
 }
 
-h2{
+/* TITLE */
+
+h1{
 font-size:34px;
+font-weight:600;
 margin:0;
 }
 
+/* CARD */
+
+.card{
+background:#1e293b;
+width:100%;
+padding:45px 35px;
+border-radius:22px;
+box-shadow:0 20px 50px rgba(0,0,0,0.4);
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:22px;
+}
+
+/* DEVICE NAME */
+
+h2{
+font-size:26px;
+margin:0;
+}
+
+/* STATUS TEXT */
+
 .status{
-font-size:28px;
-font-weight:bold;
+font-size:22px;
+font-weight:600;
+letter-spacing:1px;
 }
 
 /* SWITCH */
@@ -64,8 +84,8 @@ font-weight:bold;
 .switch{
 position:relative;
 display:inline-block;
-width:200px;
-height:100px;
+width:160px;
+height:80px;
 }
 
 .switch input{
@@ -79,20 +99,20 @@ top:0;
 left:0;
 right:0;
 bottom:0;
-background-color:#555;
-transition:.4s;
-border-radius:100px;
+background-color:#4b5563;
+transition:0.35s;
+border-radius:80px;
 }
 
 .slider:before{
 position:absolute;
 content:"";
-height:80px;
-width:80px;
-left:10px;
-bottom:10px;
+height:64px;
+width:64px;
+left:8px;
+bottom:8px;
 background-color:white;
-transition:.4s;
+transition:0.35s;
 border-radius:50%;
 }
 
@@ -101,42 +121,33 @@ background-color:#22c55e;
 }
 
 input:checked + .slider:before{
-transform:translateX(100px);
+transform:translateX(80px);
 }
 
-/* MOBILE OPTIMIZATION */
+/* DESKTOP IMPROVEMENT */
 
-@media (max-width:600px){
+@media (min-width:700px){
 
 .container{
-padding:15px;
+max-width:500px;
 }
 
 h1{
-font-size:36px;
-margin-bottom:35px;
+font-size:42px;
 }
 
 .card{
-padding:40px;
-}
-
-h2{
-font-size:28px;
-}
-
-.status{
-font-size:24px;
+padding:60px 50px;
 }
 
 .switch{
-width:170px;
-height:85px;
+width:190px;
+height:95px;
 }
 
 .slider:before{
-height:65px;
-width:65px;
+height:75px;
+width:75px;
 }
 
 }
